@@ -1,0 +1,20 @@
+h1 {
+    color: green;
+}
+
+.word-legend {
+    max-width:800 px;
+    max-height:600 px
+}
+.bg-cfe{
+    background-color: #c6e2ee !important;
+}
+.preview {
+    width: 50px;
+    height: 40px;
+    margin-left: 5px;
+}
+
+.item {
+    margin-top: 30px
+}
