@@ -52,9 +52,11 @@
                     toLvl(lvl) {
                         this.lvl = lvl;
                         if (lvl > 0) {
-                            document.getElementById('audio_en').src = '/memopi_html/static/audio/' + lvl + '_en.mp3'
-                            document.getElementById('audio_ru').src = '/memopi_html/static/audio/' + lvl + '_ru.mp3'
-                            document.getElementById('audio_legend').src = '/memopi_html/static/audio/' + lvl + '_legend.mp3'
+                            if (document.getElementById('audio_en') && document.getElementById('audio_ru') && document.getElementById('audio_legend')) {
+                                document.getElementById('audio_en').src = '/memopi_html/static/audio/' + lvl + '_en.mp3'
+                                document.getElementById('audio_ru').src = '/memopi_html/static/audio/' + lvl + '_ru.mp3'
+                                document.getElementById('audio_legend').src = '/memopi_html/static/audio/' + lvl + '_legend.mp3'
+                            }
                         }
                     }
                 }
