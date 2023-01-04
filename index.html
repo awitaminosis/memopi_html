@@ -84,22 +84,22 @@
                             <div class="row">
                                 <div class="col-sm">
                                     <audio controls>
-                                    <source src="/memopi_html/static/audio/{{lvl}}_en.mp3"/>
+                                    <source v-bind:src="'/memopi_html/static/audio/' + lvl + '_en.mp3'"/>                                        >
                                     </audio>
                                 </div>
                                 <div class="col-sm">
                                     <audio controls>
-                                    <source src="/memopi_html/static/audio/{{lvl}}_ru.mp3"/>
+                                    <source v-bind:src="'/memopi_html/static/audio/' + lvl + '_ru.mp3'"/>
                                     </audio>
                                 </div>
                                 <div class="col-sm">
                                     <audio controls>
-                                    <source src="/memopi_html/static/audio/{{lvl}}_legend.mp3"/>
+                                    <source v-bind:src="'/memopi_html/static/audio/' + lvl + '_legend.mp3'"/>
                                     </audio>
                                 </div>
                             </div>
                             <div class="row">
-                                <img class="word-legend img-fluid" src="/memopi_html/static/words/{{lvl}}.png" alt="">
+                                <img class="word-legend img-fluid" v-bind:src="'/memopi_html/static/words/' + lvl + '.png'" alt="">
                             </div>
                         </div>
 
