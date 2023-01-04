@@ -59,25 +59,25 @@
 
     <body class="bg-cfe text-light">
         <div id="app">
-            <div v-if="!lvl">
+            <template v-if="!lvl">
                 <div class="text-center my-5 mx-5">
                     <div class="text-center my-5 mx-5">
                         <div class="container">
                             <div class="row">
-                                <div v-for="item in content" :key="item.lvl">
+                                <template v-for="item in content" :key="item.lvl">
                                     <span class="col-lg-2 col-md-4 col-6 item">
                                         <span class="btn btn-primary" class="mls" @click="toLvl(item.lvl)">{{item.cont[0]}}</span>
                                         <span @click="toLvl(item.lvl)">
                                             <img class="preview" v-bind:src="'/memopi_html/static/words/previews/' + item.lvl + '.png'">
                                         </span>
                                     </span>
-                                </div>
+                                </template>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div v-else>
+            </template>
+            <template v-else>
                 <div class="text-center my-5 mx-5">
                     <div class="text-center my-5 mx-5">
                         <div class="container">
@@ -103,22 +103,22 @@
                             </div>
                         </div>
 
-                        <span v-if="lvl==1">
+                        <template v-if="lvl==1">
                             <span class="btn btn-secondary">prev</span>
-                        </span>
-                        <span v-else>
+                        </template>
+                        <template v-else>
                             <span class="btn btn-primary" @click="toLvl(lvl-1)">prev</span>
-                        </span>
+                        </template>
                         <span class="btn btn-primary mlm mrm" @click="toLvl(0)">home</span>
-                        <span v-if="lvl!=19">
+                        <template v-if="lvl!=19">
                             <span class="btn btn-primary" @click="toLvl(lvl+1)">next</span>
-                        </span>
-                        <span v-else>
+                        </template>
+                        <template v-else>
                             <span class="btn btn-secondary">next</span>
-                        </span>
+                        </template>
                     </div>
                 </div>
-            </div>
+            </template>
         </div>
     </body>
 </html>
