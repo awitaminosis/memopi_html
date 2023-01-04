@@ -1,66 +1,129 @@
 <!doctype html>
 <html lang="en">
-  <head>
+    <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Memopi</title>
 
-    <link id="favicon" rel="icon" type="image/x-icon" href="/memopi_html/static/favicon.ico">
-    <link href="static/styles.css" rel="stylesheet">
+        <link id="favicon" rel="icon" type="image/x-icon" href="/memopi_html/static/favicon.ico">
+        <link href="static/styles.css" rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-    <title>Memopi</title>
-  </head>
-  <body class="bg-cfe text-light">
+        <script type="module">
+            import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+            createApp({
+              data() {
+                return {
+                  lvl: 0
+                }
+              },
+              methods: {
+                toLvl(lvl) {
+                    this.lvl = lvl;
+                }
+              }
+            }).mount('#app')
+        </script>
 
-    <div class="text-center my-5 mx-5">
-        <div class="text-center my-5 mx-5">
-            <div class="container">
-                <div class="row">
-                    <div id="jinja_placeholder"></div>
+
+    </head>
+    <body class="bg-cfe text-light">
+        <div id="app">
+            <div v-if="!lvl">
+                <div class="text-center my-5 mx-5">
+                    <div class="text-center my-5 mx-5">
+                        <div class="container">
+                            <div class="row">
+                                <div id="jinja_placeholder"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-else>
+                <div class="text-center my-5 mx-5">
+                    <div class="text-center my-5 mx-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <audio controls>
+                                    <source src="/memopi_html/static/audio/{{lvl}}_en.mp3"/>
+                                    </audio>
+                                </div>
+                                <div class="col-sm">
+                                    <audio controls>
+                                    <source src="/memopi_html/static/audio/{{lvl}}_ru.mp3"/>
+                                    </audio>
+                                </div>
+                                <div class="col-sm">
+                                    <audio controls>
+                                    <source src="/memopi_html/static/audio/{{lvl}}_legend.mp3"/>
+                                    </audio>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <img class="word-legend img-fluid" src="/memopi_html/static/words/{{lvl}}.png" alt="">
+                            </div>
+                        </div>
+
+                        <span v-if="lvl==1">
+                            <span class="btn btn-secondary">prev</span>
+                        </span>
+                        <span v-else>
+                            <span class="btn btn-primary" @click="toLvl(lvl-1)">prev</span>
+                        </span>
+                        <span class="btn btn-primary mlm mrm" @click="toLvl(0)">home</span>
+                        <span v-if="lvl!=19">
+                            <span class="btn btn-primary" @click="toLvl(lvl+1)">next</span>
+                        </span>
+                        <span v-else>
+                            <span class="btn btn-secondary">next</span>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-  </body>
-  <script>
-      into = document.getElementById('jinja_placeholder')
-      content = {
-    //#'aWord': ['eng', 'rus', 'legend']
-    'carpet': ['carpet', 'ковер', 'тигр делает свой ковер из карпов'],
-    'castle': ['castle', 'замок', 'ежик строит замок из кастрюль'],
-    'look': ['look', 'смотреть', 'мышка смотрит на лук'],
-    'smell': ['smell', 'нюхать', 'ежик подозрительно нюхает мел. Мел не пахнет червями'],
-    'shark': ['shark', 'акула', 'тигр шаркает ногой надеясь поймать акулу'],
-    'gather': ['gather', 'собирать', 'мышка осторожно собирает газы из вулканов. для воздушных шариков и алхимических целей. очень внимательно, чтобы не перепутать вулкан с костром и жареной рыбой'],
-    'grass': ['grass', 'трава', 'ежик уже куда-то спрятался. а куда же мне спрятаться? или в грязь или в грас'],
-    'pillow': ['pillow', 'подушка', 'у ежика рядом с подушкой пила и кружка'],
-    'brick': ['brick', 'кирпич', 'Ежик запускает кирпичи по лестнице. Брик, брик, бряк'],
-    'berry': ['berry', 'ягода', 'Ежик, что это? Мышка, бери это'],
-    'gem': ['gem', 'драгоценный камень', 'Мышка, что это? Ёжик, среди камней драгоценно сияяет джем. Тигр, Мышка говорит что мы не каменный уголь нашли, а джем. А хлеб то мы взяли для бутербродов?'],
-    'tee': ['tee', 'чай', 'Часы у Мышки тикают "тик, так, тик, так". На счёт "ти" мышка в чашку кладёт чай. На счёт "так", Ёжик поступает так... Кстати, Ёжик, а ты случайно не знаешь куда делся червяк с крючка тигровой удочки?'],
-    'fork': ['fork', 'вилка', 'Ёжик шёл по дороге и нашёл форк, теперь он сможет сделать много ворк'],
-    'work': ['work', 'работа', 'У Ёжика теперь есть вилка. На ней можно засушить грибы. А потом её дам тигру как держатель для мишени. Тигр будет стрелять в яблочко, а меня угостит вкусными червяками. Предстоит много ворк.'],
-    'yes': ['yes', 'да', 'Мышка спрашивает: там Тигр рыбу ест? Ёжик отвечает: Ес!'],
-    'cucumber': ['cucumber', 'огурец', 'ку-ку-ку-ку. кукумбер'],
-    'pen': ['pen', 'ручка', 'Ну вот и спрятали клад. Осталось лишь крестик нарисовать. Ёжик, подай мне пожалуйста пен'],
-    'sock': ['sock', 'носок', 'Крыска говорит, что Тигр сильно увлёкcя и ловит рыбу уже из пруда. Так он скоро совсем намочит ноги. Ёжик, подай пожалуйста сок'],
-    'ship': ['ship', 'корабль', 'Друзья, что вы там видите в подзорную трубу? Шип'],
-    }
-      html = ''
-      for (i=0;i<Object.keys(content).length;i++) {
-        html += `<div class="col-lg-2 col-md-4 col-6 item">
-            <a class="btn btn-primary" class="mls" href="/memopi_html/lvl/${i+1}.html">${Object.keys(content)[i]}</a> <a href="/memopi_html/lvl/${i+1}.html"><img class="preview" src="/memopi_html/static/words/previews/${i+1}.png"></a>
-        </div>`
-      }
-      into.outerHTML = html
-  </script>
+        <script>
+            into = document.getElementById('jinja_placeholder')
+            content = {
+                //#'aWord': ['eng', 'rus', 'legend']
+                'carpet': ['carpet', 'ковер', 'тигр делает свой ковер из карпов'],
+                'castle': ['castle', 'замок', 'ежик строит замок из кастрюль'],
+                'look': ['look', 'смотреть', 'мышка смотрит на лук'],
+                'smell': ['smell', 'нюхать', 'ежик подозрительно нюхает мел. Мел не пахнет червями'],
+                'shark': ['shark', 'акула', 'тигр шаркает ногой надеясь поймать акулу'],
+                'gather': ['gather', 'собирать', 'мышка осторожно собирает газы из вулканов. для воздушных шариков и алхимических целей. очень внимательно, чтобы не перепутать вулкан с костром и жареной рыбой'],
+                'grass': ['grass', 'трава', 'ежик уже куда-то спрятался. а куда же мне спрятаться? или в грязь или в грас'],
+                'pillow': ['pillow', 'подушка', 'у ежика рядом с подушкой пила и кружка'],
+                'brick': ['brick', 'кирпич', 'Ежик запускает кирпичи по лестнице. Брик, брик, бряк'],
+                'berry': ['berry', 'ягода', 'Ежик, что это? Мышка, бери это'],
+                'gem': ['gem', 'драгоценный камень', 'Мышка, что это? Ёжик, среди камней драгоценно сияяет джем. Тигр, Мышка говорит что мы не каменный уголь нашли, а джем. А хлеб то мы взяли для бутербродов?'],
+                'tee': ['tee', 'чай', 'Часы у Мышки тикают "тик, так, тик, так". На счёт "ти" мышка в чашку кладёт чай. На счёт "так", Ёжик поступает так... Кстати, Ёжик, а ты случайно не знаешь куда делся червяк с крючка тигровой удочки?'],
+                'fork': ['fork', 'вилка', 'Ёжик шёл по дороге и нашёл форк, теперь он сможет сделать много ворк'],
+                'work': ['work', 'работа', 'У Ёжика теперь есть вилка. На ней можно засушить грибы. А потом её дам тигру как держатель для мишени. Тигр будет стрелять в яблочко, а меня угостит вкусными червяками. Предстоит много ворк.'],
+                'yes': ['yes', 'да', 'Мышка спрашивает: там Тигр рыбу ест? Ёжик отвечает: Ес!'],
+                'cucumber': ['cucumber', 'огурец', 'ку-ку-ку-ку. кукумбер'],
+                'pen': ['pen', 'ручка', 'Ну вот и спрятали клад. Осталось лишь крестик нарисовать. Ёжик, подай мне пожалуйста пен'],
+                'sock': ['sock', 'носок', 'Крыска говорит, что Тигр сильно увлёкcя и ловит рыбу уже из пруда. Так он скоро совсем намочит ноги. Ёжик, подай пожалуйста сок'],
+                'ship': ['ship', 'корабль', 'Друзья, что вы там видите в подзорную трубу? Шип'],
+            }
+            html = ''
+            for (i=0; i<Object.keys(content).length; i++) {
+                html += `<div class="col-lg-2 col-md-4 col-6 item">
+                    <span class="btn btn-primary" class="mls" @click="toLvl(${i+1})">${Object.keys(content)[i]}</span> <span @click="toLvl(${i+1})"><img class="preview" src="/memopi_html/static/words/previews/${i+1}.png"></span>
+                </div>`
+            }
+            into.outerHTML = html
+        </script>
+    </body>
 </html>
