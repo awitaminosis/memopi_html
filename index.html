@@ -51,6 +51,11 @@
                 methods: {
                     toLvl(lvl) {
                         this.lvl = lvl;
+                        if (lvl > 0) {
+                            document.getElementById('audio_en').src = '/memopi_html/static/audio/' + lvl + '_en.mp3'
+                            document.getElementById('audio_ru').src = '/memopi_html/static/audio/' + lvl + '_ru.mp3'
+                            document.getElementById('audio_legend').src = '/memopi_html/static/audio/' + lvl + '_legend.mp3'
+                        }
                     }
                 }
             }).mount('#app')
@@ -84,17 +89,17 @@
                             <div class="row">
                                 <div class="col-sm">
                                     <audio controls>
-                                    <source v-bind:src="'/memopi_html/static/audio/' + lvl + '_en.mp3'"/>                                        >
+                                    <source id="audio_en" v-bind:src="'/memopi_html/static/audio/' + lvl + '_en.mp3'"/>                                        >
                                     </audio>
                                 </div>
                                 <div class="col-sm">
                                     <audio controls>
-                                    <source v-bind:src="'/memopi_html/static/audio/' + lvl + '_ru.mp3'"/>
+                                    <source id="audio_ru" v-bind:src="'/memopi_html/static/audio/' + lvl + '_ru.mp3'"/>
                                     </audio>
                                 </div>
                                 <div class="col-sm">
                                     <audio controls>
-                                    <source v-bind:src="'/memopi_html/static/audio/' + lvl + '_legend.mp3'"/>
+                                    <source id="audio_legend" v-bind:src="'/memopi_html/static/audio/' + lvl + '_legend.mp3'"/>
                                     </audio>
                                 </div>
                             </div>
